@@ -10,14 +10,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int totalSeconds = 1500;
+  static const TWENTY_FIVE_MINUTUES = 1500;
+
+  int totalSeconds = TWENTY_FIVE_MINUTUES;
   bool isRunning = false;
+  int totalPomodoros = 0;
   late Timer timer;
 
+  String format(int seconds) {
+    var duration = Duration(seconds: seconds);
+    var string = duration.toString().split(".").first.substring(2);
+    return string;
+  }
+
   void onTick(Timer timer) {
-    setState(() {
-      totalSeconds--;
-    });
+    if (totalSeconds <= 0) {
+      setState(() {
+        totalPomodoros++;
+        totalSeconds = TWENTY_FIVE_MINUTUES;
+        isRunning = false;
+      });
+      timer.cancel();
+    } else {
+      setState(() {
+        totalSeconds--;
+      });
+    }
   }
 
   void onStartPressed() {
@@ -47,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Container(
                   alignment: Alignment.bottomCenter,
                   child: Text(
-                    "$totalSeconds",
+                    format(totalSeconds),
                     style: TextStyle(
                         color: Theme.of(context).cardColor,
                         fontSize: 89,
@@ -83,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                         .textTheme
                                         .headlineLarge!
                                         .color)),
-                            Text("0",
+                            Text("$totalPomodoros",
                                 style: TextStyle(
                                     fontSize: 58,
                                     fontWeight: FontWeight.w600,
