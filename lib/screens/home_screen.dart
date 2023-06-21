@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void onStartPressed() {
-    timer = Timer.periodic(Duration(seconds: 1), onTick);
+    timer = Timer.periodic(const Duration(seconds: 1), onTick);
 
     setState(() {
       isRunning = true;
