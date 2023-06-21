@@ -26,19 +26,19 @@ class WebtoonScreen extends StatelessWidget {
             if (snapshot.hasData) {
               return Column(
                 children: [
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Expanded(child: makeList(snapshot))
                 ],
               );
             }
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           },
         ));
   }
 
   ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
     return ListView.separated(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       scrollDirection: Axis.horizontal,
       itemCount: snapshot.data?.length ?? 0,
       itemBuilder: (context, index) {
@@ -47,7 +47,7 @@ class WebtoonScreen extends StatelessWidget {
         return Webtoon(model: webtoon);
       },
       separatorBuilder: (context, index) {
-        return SizedBox(width: 40);
+        return const SizedBox(width: 40);
       },
     );
   }

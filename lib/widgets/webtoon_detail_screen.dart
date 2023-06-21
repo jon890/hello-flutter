@@ -31,14 +31,14 @@ class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(widget.model.title,
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w500)),
         elevation: 2,
         backgroundColor: Colors.white,
         foregroundColor: Colors.green,
       ),
       body: Column(
         children: [
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -51,7 +51,7 @@ class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
                       boxShadow: [
                         BoxShadow(
                             blurRadius: 15,
-                            offset: Offset(10, 10),
+                            offset: const Offset(10, 10),
                             color: Colors.black.withOpacity(0.5))
                       ]),
                   clipBehavior: Clip.hardEdge,
@@ -66,7 +66,7 @@ class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
               ),
             ],
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           FutureBuilder(
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
@@ -76,16 +76,16 @@ class _WebtoonDetailScreenState extends State<WebtoonDetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(snapshot.data!.about,
-                            style: TextStyle(fontSize: 16)),
-                        SizedBox(height: 15),
+                            style: const TextStyle(fontSize: 16)),
+                        const SizedBox(height: 15),
                         Text("${snapshot.data!.genre} / ${snapshot.data!.age}",
-                            style: TextStyle(fontSize: 16)),
+                            style: const TextStyle(fontSize: 16)),
                       ],
                     ),
                   );
                 }
 
-                return Text("...");
+                return const Text("...");
               },
               future: detail)
         ],
